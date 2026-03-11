@@ -24,13 +24,15 @@ class Solution {
 
         for(int num : nums){
             totalSum += num;
-        }
+        }   
 
         // if(totalSum < Math.abs(target)) return 0;
 
         if((totalSum + target) % 2 != 0) return 0;
 
         int sum1 = (totalSum + target) / 2;
+
+        if(totalSum < target) return 0;
 
         return solve(sum1, nums, 0);
     }

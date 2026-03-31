@@ -4,17 +4,17 @@ class Solution {
 
     public void solve(int start, int[] nums, List<Integer> curr, List<List<Integer>> ans) {
         
-        // har step pe current subset add karo
+         //har step pe current subset add karo
         ans.add(new ArrayList<>(curr));
 
         for(int i = start; i < nums.length; i++) {
 
-            // duplicate skip
+             //duplicate skip
             if(i > start && nums[i] == nums[i - 1]) continue;
 
-            curr.add(nums[i]);              // include
-            solve(i + 1, nums, curr, ans); // next index
-            curr.remove(curr.size() - 1);  // backtrack
+            curr.add(nums[i]);               //include
+            solve(i + 1, nums, curr, ans); //next index
+            curr.remove(curr.size() - 1);  //backtrack
         }
     }
 
@@ -27,3 +27,4 @@ class Solution {
         return ans;
     }
 }
+

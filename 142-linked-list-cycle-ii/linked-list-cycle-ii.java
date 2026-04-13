@@ -9,24 +9,32 @@
  *     }
  * }
  */
+// 
+
 public class Solution {
     public ListNode detectCycle(ListNode head) {
-        if(head==null || head.next==null)return null;
-        ListNode slow=head;
-        ListNode fast=head;
-        while(fast!=null && fast.next!=null){
-            slow=slow.next;
-            fast=fast.next.next;
-            if(slow==fast){  //cycle is detect 
-                ListNode curr =head;
-                while(curr!=slow){
-                    slow=slow.next; //slow ko 1 kadam chalao
-                    curr=curr.next; //current ko 1 kadam chalao
+
+        ListNode slow = head;
+        ListNode fast = head;
+
+        // Step 1: Detect cycle
+        while (fast != null && fast.next != null) {
+            slow = slow.next;          // move 1 step
+            fast = fast.next.next;     // move 2 steps
+
+            if (slow == fast) {        // cycle detected
+
+                // Step 2: Find cycle start
+                slow = head;
+                while (slow != fast) {
+                    slow = slow.next;
+                    fast = fast.next;
                 }
-                return curr;
+
+                return slow; // start of cycle
             }
         }
-       return null;
-        
+
+        return null; // no cycle
     }
 }
